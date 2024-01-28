@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dynamic Content</title>
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+    }
+    #sidebar {
+        width: 200px;
+        height: 100%;
+        background-color: #333;
+        color: #fff;
+        float: left;
+    }
+    #content {
+        margin-left: 200px;
+        padding: 20px;
+        height: 200px;
+         width: auto;
+    }
+    .menu-item {
+        padding: 10px;
+        cursor: pointer;
+    }
+    #box1{
+        width: 100px;
+        height: 50px;
+        object-fit: contain;
+    }
+</style>
+</head>
+<body>
+
+<div id="sidebar">
+    <div class="menu-item" data-file="Page1.html">page 1</div>
+    <div class="menu-item" data-file="page2.html">Page 2</div>
+    <div class="menu-item" data-file="page3.html">Page 3</div>
+</div>
+
+<div id="content">
+    Content will load here...
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+    // Load initial content
+    $('#content').load('page1.html');
+
+    // Handle menu item clicks
+    $('.menu-item').click(function(){
+        var file = $(this).data('file');
+        $('#content').load(file);
+    });
+});
+</script>
+
+</body>
+</html>
